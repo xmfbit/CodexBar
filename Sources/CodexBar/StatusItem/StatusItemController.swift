@@ -47,7 +47,6 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
     static let quotaWarningFlashDuration: TimeInterval = 60
     private nonisolated static let statusItemAccessibilityTitle = "CodexBar"
     private nonisolated static let debugStatusItemAccessibilityTitle = "CodexBar Debug"
-    private nonisolated static let statusItemAccessibilityIdentifierPrefix = "CodexBar.StatusItem"
     private nonisolated static let mergedLegacyDefaultItemIndex = 0
 
     enum StatusItemIdentity {
@@ -63,13 +62,10 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
             }
         }
 
+        /// Menu bar managers (Thaw on macOS 27) key an item's saved position by
+        /// its AX identifier, so it must equal the autosave name.
         var accessibilityIdentifier: String {
-            switch self {
-            case .merged:
-                StatusItemController.statusItemAccessibilityIdentifierPrefix
-            case let .provider(provider):
-                "\(StatusItemController.statusItemAccessibilityIdentifierPrefix).\(provider.rawValue)"
-            }
+            self.autosaveName
         }
     }
 

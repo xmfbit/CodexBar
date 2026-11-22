@@ -231,9 +231,9 @@ struct StatusItemControllerSplitLifecycleTests {
         #expect(controller.statusItem.autosaveName == "codexbar-merged")
         #expect(controller.statusItems[.codex]?.autosaveName == "codexbar-codex")
         #expect(controller.statusItems[.claude]?.autosaveName == "codexbar-claude")
-        #expect(controller.statusItem.button?.accessibilityIdentifier() == "CodexBar.StatusItem")
-        #expect(codexButton.accessibilityIdentifier() == "CodexBar.StatusItem.codex")
-        #expect(claudeButton.accessibilityIdentifier() == "CodexBar.StatusItem.claude")
+        #expect(controller.statusItem.button?.accessibilityIdentifier() == "codexbar-merged")
+        #expect(codexButton.accessibilityIdentifier() == "codexbar-codex")
+        #expect(claudeButton.accessibilityIdentifier() == "codexbar-claude")
         #expect(controller.statusItem.button?.accessibilityTitle() == "CodexBar")
         #expect(codexButton.accessibilityTitle() == "CodexBar")
         #expect(claudeButton.accessibilityTitle() == "CodexBar")
@@ -247,6 +247,9 @@ struct StatusItemControllerSplitLifecycleTests {
         #expect(StatusItemController.StatusItemIdentity.merged.autosaveName == "codexbar-merged")
         #expect(StatusItemController.StatusItemIdentity.provider(.codex).autosaveName == "codexbar-codex")
         #expect(StatusItemController.StatusItemIdentity.provider(.claude).autosaveName == "codexbar-claude")
+        #expect(StatusItemController.StatusItemIdentity.merged.accessibilityIdentifier == "codexbar-merged")
+        #expect(StatusItemController.StatusItemIdentity.provider(.codex).accessibilityIdentifier == "codexbar-codex")
+        #expect(StatusItemController.StatusItemIdentity.provider(.claude).accessibilityIdentifier == "codexbar-claude")
     }
 
     @Test
@@ -560,7 +563,7 @@ struct StatusItemControllerSplitLifecycleTests {
         #expect(newClaudeItem === oldClaudeItem)
         #expect(newCodexItem.button === oldCodexButton)
         #expect(newCodexItem.autosaveName == "codexbar-codex")
-        #expect(newCodexItem.button?.accessibilityIdentifier() == "CodexBar.StatusItem.codex")
+        #expect(newCodexItem.button?.accessibilityIdentifier() == "codexbar-codex")
     }
 
     @Test
@@ -578,7 +581,7 @@ struct StatusItemControllerSplitLifecycleTests {
         #expect(controller.statusItem === oldMergedItem)
         #expect(controller.statusItem.button === oldMergedButton)
         #expect(controller.statusItem.autosaveName == "codexbar-merged")
-        #expect(controller.statusItem.button?.accessibilityIdentifier() == "CodexBar.StatusItem")
+        #expect(controller.statusItem.button?.accessibilityIdentifier() == "codexbar-merged")
     }
 
     @Test
@@ -610,7 +613,7 @@ struct StatusItemControllerSplitLifecycleTests {
         let newCodexItem = try #require(controller.statusItems[.codex])
         #expect(newCodexItem !== oldCodexItem)
         #expect(newCodexItem.autosaveName == "codexbar-codex")
-        #expect(newCodexItem.button?.accessibilityIdentifier() == "CodexBar.StatusItem.codex")
+        #expect(newCodexItem.button?.accessibilityIdentifier() == "codexbar-codex")
     }
 
     @Test
@@ -628,6 +631,6 @@ struct StatusItemControllerSplitLifecycleTests {
         let mergedButton = try #require(controller.statusItem.button)
         #expect(mergedButton.image != nil)
         #expect(controller.statusItem.autosaveName == "codexbar-merged")
-        #expect(mergedButton.accessibilityIdentifier() == "CodexBar.StatusItem")
+        #expect(mergedButton.accessibilityIdentifier() == "codexbar-merged")
     }
 }
